@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Sidekick</title>
+    <title>Meta Ads Sidekick v3 (AI Logic)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
         <header>
-            <h1>🚀 Meta Ads Sidekick</h1>
-            <p>Tools sederhana untuk Advertiser Meta Ads</p>
+            <h1>🚀 Meta Ads Sidekick v3.0</h1>
+            <p>Generator dengan Logika AI Internal</p>
         </header>
 
         <nav class="tabs">
-            <button class="tab-link active" data-tab="utm-builder">UTM Generator</button>
-            <button class="tab-link" data-tab="copy-generator">Ad Copy Generator</button>
+            <button class="tab-link" data-tab="utm-builder">UTM Generator</button>
+            <button class="tab-link active" data-tab="copy-generator">AI Ad Copy Generator</button>
             <button class="tab-link" data-tab="metrics-calculator">Kalkulator Metrik</button>
         </nav>
 
-        <div id="utm-builder" class="tool-content active">
+        <div id="utm-builder" class="tool-content">
             <h2>URL Campaign Builder (UTM)</h2>
             <p>Isi form di bawah untuk membuat URL tracking kampanye Anda.</p>
             <div class="form-group">
@@ -50,81 +49,67 @@
             <div class="result-box">
                 <label for="final-url">URL Hasil Jadi:</label>
                 <textarea id="final-url" readonly rows="4"></textarea>
-                <button id="copy-url-btn">Salin ke Clipboard</button>
+                <button id="copy-url-btn" class="copy-main-btn">Salin ke Clipboard</button>
             </div>
         </div>
 
-        <div id="copy-generator" class="tool-content">
-            <h2>Ad Copy Idea Generator</h2>
-            <p>Klik tombol di bawah untuk mendapatkan ide Headline & Primary Text.</p>
-            <button id="generate-copy-btn">Buat Ide Baru!</button>
-            <div class="ad-copy-results">
-                <div class="result-box">
-                    <h3>Saran Headline</h3>
-                    <p id="headline-idea"></p>
+        <div id="copy-generator" class="tool-content active">
+            <h2>AI Ad Copy Generator</h2>
+            <p>Mesin ini akan merakit ad copy unik berdasarkan input Anda.</p>
+            <div class="form-grid-ai">
+                <div class="form-group">
+                    <label for="copy-product-name">Nama Produk/Layanan</label>
+                    <input type="text" id="copy-product-name" placeholder="Kopi Susu Gula Aren">
                 </div>
-                <div class="result-box">
-                    <h3>Saran Primary Text</h3>
-                    <p id="primary-text-idea"></p>
+                <div class="form-group">
+                    <label for="copy-audience">Target Audience</label>
+                    <input type="text" id="copy-audience" placeholder="Pekerja Kantoran">
+                </div>
+                <div class="form-group">
+                    <label for="copy-usp">Manfaat Utama / USP</label>
+                    <input type="text" id="copy-usp" placeholder="bikin semangat seharian">
+                </div>
+                <div class="form-group">
+                    <label for="copy-pain-point">Masalah yang Diselesaikan</label>
+                    <input type="text" id="copy-pain-point" placeholder="sering ngantuk di siang hari">
+                </div>
+                 <div class="form-group">
+                    <label for="copy-style">Pilih Gaya Copywriting</label>
+                    <select id="copy-style">
+                        <option value="soft-sell">Soft Selling (Fokus Manfaat)</option>
+                        <option value="hard-sell">Hard Selling (Fokus Urgensi)</option>
+                        <option value="pas">Problem-Agitate-Solve</option>
+                        <option value="story">Storytelling</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="copy-tone">Pilih Tone of Voice</label>
+                    <select id="copy-tone">
+                        <option value="professional">Profesional</option>
+                        <option value="casual">Kasual & Ramah</option>
+                        <option value="enthusiastic">Antusias & Enerjik</option>
+                    </select>
                 </div>
             </div>
+             <div class="form-group">
+                <label for="copy-cta">Call to Action (CTA)</label>
+                <input type="text" id="copy-cta" value="Pesan Sekarang">
+            </div>
+            <button id="generate-copy-btn" class="generate-main-btn">✨ Buat Ad Copy dengan Logika AI!</button>
+            <div id="ad-copy-results-v2" class="ad-copy-results-v2">
+                </div>
         </div>
-
+        
         <div id="metrics-calculator" class="tool-content">
-            <h2>Kalkulator Metrik Iklan</h2>
+             <h2>Kalkulator Metrik Iklan</h2>
             <div class="calculator-grid">
-                <div class="calc-card">
-                    <h3>CTR (%)</h3>
-                    <div class="form-group">
-                        <label for="ctr-clicks">Jumlah Klik</label>
-                        <input type="number" id="ctr-clicks" placeholder="150">
-                    </div>
-                    <div class="form-group">
-                        <label for="ctr-impressions">Jumlah Impresi</label>
-                        <input type="number" id="ctr-impressions" placeholder="10000">
-                    </div>
-                    <p class="calc-result">Hasil: <span id="ctr-result">-</span></p>
-                </div>
-                <div class="calc-card">
-                    <h3>CPC (Rp)</h3>
-                    <div class="form-group">
-                        <label for="cpc-cost">Total Biaya (Rp)</label>
-                        <input type="number" id="cpc-cost" placeholder="500000">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpc-clicks">Jumlah Klik</label>
-                        <input type="number" id="cpc-clicks" placeholder="150">
-                    </div>
-                    <p class="calc-result">Hasil: <span id="cpc-result">-</span></p>
-                </div>
-                <div class="calc-card">
-                    <h3>CPM (Rp)</h3>
-                    <div class="form-group">
-                        <label for="cpm-cost">Total Biaya (Rp)</label>
-                        <input type="number" id="cpm-cost" placeholder="500000">
-                    </div>
-                    <div class="form-group">
-                        <label for="cpm-impressions">Jumlah Impresi</label>
-                        <input type="number" id="cpm-impressions" placeholder="10000">
-                    </div>
-                    <p class="calc-result">Hasil: <span id="cpm-result">-</span></p>
-                </div>
-                <div class="calc-card">
-                    <h3>ROAS</h3>
-                    <div class="form-group">
-                        <label for="roas-revenue">Total Pendapatan (Rp)</label>
-                        <input type="number" id="roas-revenue" placeholder="2500000">
-                    </div>
-                    <div class="form-group">
-                        <label for="roas-cost">Total Biaya Iklan (Rp)</label>
-                        <input type="number" id="roas-cost" placeholder="500000">
-                    </div>
-                    <p class="calc-result">Hasil: <span id="roas-result">-</span></p>
-                </div>
+                <div class="calc-card"><h3>CTR (%)</h3><div class="form-group"><label for="ctr-clicks">Jumlah Klik</label><input type="number" id="ctr-clicks" placeholder="150"></div><div class="form-group"><label for="ctr-impressions">Jumlah Impresi</label><input type="number" id="ctr-impressions" placeholder="10000"></div><p class="calc-result">Hasil: <span id="ctr-result">-</span></p></div>
+                <div class="calc-card"><h3>CPC (Rp)</h3><div class="form-group"><label for="cpc-cost">Total Biaya (Rp)</label><input type="number" id="cpc-cost" placeholder="500000"></div><div class="form-group"><label for="cpc-clicks">Jumlah Klik</label><input type="number" id="cpc-clicks" placeholder="150"></div><p class="calc-result">Hasil: <span id="cpc-result">-</span></p></div>
+                <div class="calc-card"><h3>CPM (Rp)</h3><div class="form-group"><label for="cpm-cost">Total Biaya (Rp)</label><input type="number" id="cpm-cost" placeholder="500000"></div><div class="form-group"><label for="cpm-impressions">Jumlah Impresi</label><input type="number" id="cpm-impressions" placeholder="10000"></div><p class="calc-result">Hasil: <span id="cpm-result">-</span></p></div>
+                <div class="calc-card"><h3>ROAS</h3><div class="form-group"><label for="roas-revenue">Total Pendapatan (Rp)</label><input type="number" id="roas-revenue" placeholder="2500000"></div><div class="form-group"><label for="roas-cost">Total Biaya Iklan (Rp)</label><input type="number" id="roas-cost" placeholder="500000"></div><p class="calc-result">Hasil: <span id="roas-result">-</span></p></div>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
