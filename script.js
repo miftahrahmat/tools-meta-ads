@@ -57,10 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let headline = '';
             let primaryTextParts = { product, cta, emojis: lib.emojis[tone] };
 
-            // Replace placeholders
             const replacePlaceholders = (str) => str.replace(/{product}/g, product).replace(/{audience}/g, audience).replace(/{usp}/g, usp).replace(/{pain}/g, pain);
 
-            // Construct based on style
             switch (style) {
                 case 'soft-sell':
                 case 'story':
@@ -85,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
             
-            // Final assembly
             const finalHeadline = replacePlaceholders(headline);
             const finalPrimaryText = replacePlaceholders(assembleCopy(primaryTextParts));
 
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return results;
     }
     // --- End of AI Copywriting Logic Engine ---
-
 
     // Tab functionality
     const tabs = document.querySelectorAll('.tab-link');
@@ -136,7 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="copy-option">
                     <h4>Opsi Ad Copy ${counter}</h4>
                     <p><strong>Headline:</strong> <span id="${headlineId}">${result.headline}</span> <button class="copy-btn" data-target="${headlineId}">Salin</button></p>
-                    <p><strong>Primary Text:</strong><br><span id="${primaryTextId}">${result.primaryText}</span> <button class="copy-btn" data-target="${primaryTextId}">Salin</button></p>
+                    <p><strong>Primary Text:</strong><br><span id="${primaryTextId}">${result.primaryText}</span></p>
+                    <button class="copy-btn" data-target="${primaryTextId}">Salin Primary Text</button>
                 </div>
             `;
             resultsContainer.innerHTML += html;
@@ -154,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Other tools (UTM and Calculator) - No changes needed ---
+    // --- UTM and Calculator Logic ---
     const utmInputs = document.querySelectorAll('#utm-builder input');
     const finalUrlTextarea = document.getElementById('final-url');
     const copyUrlBtn = document.getElementById('copy-url-btn');
