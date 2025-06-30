@@ -1,115 +1,121 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Ads Sidekick v3 (AI Logic)</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Ads Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🚀 Meta Ads Sidekick v3.0</h1>
-            <p>Generator dengan Logika AI Internal</p>
-        </header>
+<body class="bg-gray-100 text-gray-800 p-6">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Meta Ads Copy & Strategy Generator</h1>
 
-        <nav class="tabs">
-            <button class="tab-link" data-tab="utm-builder">UTM Generator</button>
-            <button class="tab-link active" data-tab="copy-generator">AI Ad Copy Generator</button>
-            <button class="tab-link" data-tab="metrics-calculator">Kalkulator Metrik</button>
-        </nav>
+    <form id="adsForm" class="space-y-4">
+      <input name="nama_produk" placeholder="Nama Produk" required class="w-full p-2 border rounded" />
+      <textarea name="deskripsi_produk" placeholder="Deskripsi Produk" required class="w-full p-2 border rounded"></textarea>
+      <input name="target_audiens" placeholder="Target Audiens" required class="w-full p-2 border rounded" />
 
-        <div id="utm-builder" class="tool-content">
-            <h2>URL Campaign Builder (UTM)</h2>
-            <p>Isi form di bawah untuk membuat URL tracking kampanye Anda.</p>
-            <div class="form-group">
-                <label for="base-url">URL Asli (Website Link)</label>
-                <input type="url" id="base-url" placeholder="https.contoh.com/produk-anda" required>
-            </div>
-            <div class="form-group">
-                <label for="utm-source">Campaign Source (<code>utm_source</code>)</label>
-                <input type="text" id="utm-source" value="facebook" required>
-            </div>
-            <div class="form-group">
-                <label for="utm-medium">Campaign Medium (<code>utm_medium</code>)</label>
-                <input type="text" id="utm-medium" value="cpc" required>
-            </div>
-            <div class="form-group">
-                <label for="utm-campaign">Campaign Name (<code>utm_campaign</code>)</label>
-                <input type="text" id="utm-campaign" placeholder="promo-lebaran-2025" required>
-            </div>
-            <div class="form-group">
-                <label for="utm-term">Campaign Term (<code>utm_term</code>) - Opsional</label>
-                <input type="text" id="utm-term" placeholder="misal: target_interest_anda">
-            </div>
-            <div class="form-group">
-                <label for="utm-content">Campaign Content (<code>utm_content</code>) - Opsional</label>
-                <input type="text" id="utm-content" placeholder="misal: video_ad_1 atau carousel_ad">
-            </div>
-            <div class="result-box">
-                <label for="final-url">URL Hasil Jadi:</label>
-                <textarea id="final-url" readonly rows="4"></textarea>
-                <button id="copy-url-btn" class="copy-main-btn">Salin ke Clipboard</button>
-            </div>
-        </div>
+      <select name="tone_of_voice" required class="w-full p-2 border rounded">
+        <option value="">Pilih Tone of Voice</option>
+        <option value="Friendly">Friendly</option>
+        <option value="Street-style">Street-style</option>
+        <option value="Professional">Professional</option>
+        <option value="Playful">Playful</option>
+        <option value="Luxury">Luxury</option>
+      </select>
 
-        <div id="copy-generator" class="tool-content active">
-            <h2>AI Ad Copy Generator</h2>
-            <p>Mesin ini akan merakit ad copy unik berdasarkan input Anda.</p>
-            <div class="form-grid-ai">
-                <div class="form-group">
-                    <label for="copy-product-name">Nama Produk/Layanan</label>
-                    <input type="text" id="copy-product-name" placeholder="Kopi Susu Gula Aren">
-                </div>
-                <div class="form-group">
-                    <label for="copy-audience">Target Audience</label>
-                    <input type="text" id="copy-audience" placeholder="Pekerja Kantoran">
-                </div>
-                <div class="form-group">
-                    <label for="copy-usp">Manfaat Utama / USP</label>
-                    <input type="text" id="copy-usp" placeholder="bikin semangat seharian">
-                </div>
-                <div class="form-group">
-                    <label for="copy-pain-point">Masalah yang Diselesaikan</label>
-                    <input type="text" id="copy-pain-point" placeholder="sering ngantuk di siang hari">
-                </div>
-                 <div class="form-group">
-                    <label for="copy-style">Pilih Gaya Copywriting</label>
-                    <select id="copy-style">
-                        <option value="soft-sell">Soft Selling (Fokus Manfaat)</option>
-                        <option value="hard-sell">Hard Selling (Fokus Urgensi)</option>
-                        <option value="pas">Problem-Agitate-Solve</option>
-                        <option value="story">Storytelling</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="copy-tone">Pilih Tone of Voice</label>
-                    <select id="copy-tone">
-                        <option value="professional">Profesional</option>
-                        <option value="casual">Kasual & Ramah</option>
-                        <option value="enthusiastic">Antusias & Enerjik</option>
-                    </select>
-                </div>
-            </div>
-             <div class="form-group">
-                <label for="copy-cta">Call to Action (CTA)</label>
-                <input type="text" id="copy-cta" value="Pesan Sekarang">
-            </div>
-            <button id="generate-copy-btn" class="generate-main-btn">✨ Buat Ad Copy dengan Logika AI!</button>
-            <div id="ad-copy-results-v2" class="ad-copy-results-v2">
-                </div>
-        </div>
-        
-        <div id="metrics-calculator" class="tool-content">
-             <h2>Kalkulator Metrik Iklan</h2>
-            <div class="calculator-grid">
-                <div class="calc-card"><h3>CTR (%)</h3><div class="form-group"><label for="ctr-clicks">Jumlah Klik</label><input type="number" id="ctr-clicks" placeholder="150"></div><div class="form-group"><label for="ctr-impressions">Jumlah Impresi</label><input type="number" id="ctr-impressions" placeholder="10000"></div><p class="calc-result">Hasil: <span id="ctr-result">-</span></p></div>
-                <div class="calc-card"><h3>CPC (Rp)</h3><div class="form-group"><label for="cpc-cost">Total Biaya (Rp)</label><input type="number" id="cpc-cost" placeholder="500000"></div><div class="form-group"><label for="cpc-clicks">Jumlah Klik</label><input type="number" id="cpc-clicks" placeholder="150"></div><p class="calc-result">Hasil: <span id="cpc-result">-</span></p></div>
-                <div class="calc-card"><h3>CPM (Rp)</h3><div class="form-group"><label for="cpm-cost">Total Biaya (Rp)</label><input type="number" id="cpm-cost" placeholder="500000"></div><div class="form-group"><label for="cpm-impressions">Jumlah Impresi</label><input type="number" id="cpm-impressions" placeholder="10000"></div><p class="calc-result">Hasil: <span id="cpm-result">-</span></p></div>
-                <div class="calc-card"><h3>ROAS</h3><div class="form-group"><label for="roas-revenue">Total Pendapatan (Rp)</label><input type="number" id="roas-revenue" placeholder="2500000"></div><div class="form-group"><label for="roas-cost">Total Biaya Iklan (Rp)</label><input type="number" id="roas-cost" placeholder="500000"></div><p class="calc-result">Hasil: <span id="roas-result">-</span></p></div>
-            </div>
-        </div>
+      <select name="objective_iklan" required class="w-full p-2 border rounded">
+        <option value="">Pilih Objective Iklan</option>
+        <option value="Awareness">Awareness</option>
+        <option value="Traffic">Traffic</option>
+        <option value="Conversion">Conversion</option>
+        <option value="Lead Generation">Lead Generation</option>
+        <option value="App Install">App Install</option>
+      </select>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
+    </form>
+
+    <div class="mt-6">
+      <div class="flex space-x-2 border-b mb-2">
+        <button onclick="showTab('outputRaw')" class="px-3 py-1 bg-gray-200 rounded-t">JSON</button>
+        <button onclick="showTab('outputCopy')" class="px-3 py-1 bg-gray-100 rounded-t">Copywriting</button>
+        <button onclick="showTab('outputVisual')" class="px-3 py-1 bg-gray-100 rounded-t">Visual</button>
+        <button onclick="showTab('outputAds')" class="px-3 py-1 bg-gray-100 rounded-t">Ads Settings</button>
+      </div>
+      <pre id="outputRaw" class="bg-white p-4 rounded overflow-x-auto whitespace-pre-wrap text-sm"></pre>
+      <pre id="outputCopy" class="hidden bg-white p-4 rounded overflow-x-auto whitespace-pre-wrap text-sm"></pre>
+      <pre id="outputVisual" class="hidden bg-white p-4 rounded overflow-x-auto whitespace-pre-wrap text-sm"></pre>
+      <pre id="outputAds" class="hidden bg-white p-4 rounded overflow-x-auto whitespace-pre-wrap text-sm"></pre>
     </div>
-    <script src="script.js"></script>
+  </div>
+
+  <script>
+    const apiKey = "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";
+
+    const form = document.getElementById("adsForm");
+    const outputRaw = document.getElementById("outputRaw");
+    const outputCopy = document.getElementById("outputCopy");
+    const outputVisual = document.getElementById("outputVisual");
+    const outputAds = document.getElementById("outputAds");
+
+    function showTab(id) {
+      [outputRaw, outputCopy, outputVisual, outputAds].forEach(el => el.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = Object.fromEntries(new FormData(form).entries());
+
+      const prompt = `Anda adalah seorang ahli strategi periklanan Meta Ads dan creative director. Berdasarkan informasi berikut:
+
+- Nama Produk: ${formData.nama_produk}
+- Deskripsi: ${formData.deskripsi_produk}
+- Target Audiens: ${formData.target_audiens}
+- Tone of Voice: ${formData.tone_of_voice}
+- Objective Iklan: ${formData.objective_iklan}
+
+Buat JSON berisi:
+1. Copywriting (Hardsell & Softsell)
+2. Rekomendasi Visual Style (Konsep Shoot, Lighting, Angle & Komposisi, Warna Dominan)
+3. Setting Meta Ads (Targeting Audience, Placement, Budget Harian)
+4. Carousel Script (3 Slides)
+5. Instagram Reels Script + Caption
+6. Visual Brief untuk Fotografer/Desainer
+
+Format hasil dalam JSON bersih tanpa tambahan teks.`;
+
+      outputRaw.textContent = "⏳ Generating...";
+      showTab('outputRaw');
+
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "openai/gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+
+      const data = await response.json();
+      const content = data.choices?.[0]?.message?.content;
+      outputRaw.textContent = content || "❌ Gagal mendapatkan hasil";
+
+      try {
+        const json = JSON.parse(content);
+        outputCopy.textContent = JSON.stringify(json.Copywriting, null, 2);
+        outputVisual.textContent = JSON.stringify(json["Rekomendasi Visual Style"], null, 2);
+        outputAds.textContent = JSON.stringify(json["Rekomendasi Setting Meta Ads"], null, 2);
+      } catch {
+        outputCopy.textContent = "❌ Format JSON tidak valid";
+        outputVisual.textContent = "❌ Format JSON tidak valid";
+        outputAds.textContent = "❌ Format JSON tidak valid";
+      }
+    };
+  </script>
 </body>
 </html>
